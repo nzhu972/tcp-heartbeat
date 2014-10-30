@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Author: OSA, Initial Implementation: 10/31/2014
+-->
+
+<!-- Configures the Camel Context -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    	
+    <import resource="heartbeat-beans.xml"/>	
+    	  
+    <!--  The Camel Context and routes -->
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <camel:route>	
+	        <from uri="timer://heartbeat?fixedRate=true&amp;period={{heartbeat.interval}}"/>
+	        
+	        <camel:log message="Start HQ heartbeat. Interval is set for {{heartbeat.interval}} ms."/>
+	        
+	        <!-- Put the xml string into the payload -->
+         	<camel:transform>
+               <camel:simple>{{hq.xml.string}}</camel:simple>
+            </camel:transform>
+            
+            <!-- Put the request on the queue-->
+            <camel:to uri="{{hq.queue}}" pattern="InOut"/>
+             
+			<camel:log message="End HQ heartbeat. Response received  ==> ${body}"/>
+	       
+		</camel:route>
+    </camelContext>
+</beans>

@@ -6,7 +6,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Heartbeat Bundle</name>
   <description>To keep the HQ connection alive</description>
-  
+  <properties>
+  	<heartbeat.interval>300000</heartbeat.interval>
+  </properties>
   <parent>
     <groupId>org.cheth.esb</groupId>
     <artifactId>fuseesb-commons</artifactId>

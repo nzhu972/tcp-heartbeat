@@ -13,9 +13,7 @@ Patient Request is defined in application.properties
 Prerequisite
 -----------------------------------------
 
-Ensure your development environment is configured to access Trinity's Nexus repo.
-For instruction on how to provision, please refer to the document on Trinity's Phabricator WIKI.
-The doc name is 'Trinity IDE Environment Setup Guide'
+Ensure your development environment is configured to access Nexus repo.
 
 Building and installing the project into a local Standalone Fuse ESB (non-fabric mode)
 -----------------------------------------
